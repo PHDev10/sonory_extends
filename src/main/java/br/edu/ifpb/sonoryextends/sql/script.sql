@@ -22,3 +22,13 @@ CREATE TABLE user_action (
     descricao TEXT NOT NULL,
     data_hora TIMESTAMP
 );
+
+CREATE TABLE conversion_history(
+	id SERIAL PRIMARY KEY,
+	nome_original VARCHAR(100) NOT NULL,
+	formato_original VARCHAR(100) NOT NULL,
+	formato_conversao VARCHAR(100) NOT NULL,
+	pacote_saida TEXT,
+	data_conversao TIMESTAMP,
+	status VARCHAR(50)
+);
