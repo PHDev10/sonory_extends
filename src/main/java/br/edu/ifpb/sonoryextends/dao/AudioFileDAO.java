@@ -1,19 +1,17 @@
 package br.edu.ifpb.sonoryextends.dao;
 
 import br.edu.ifpb.sonoryextends.model.AudioFile;
-import br.edu.ifpb.sonoryextends.util.Conexao;
+import br.edu.ifpb.sonoryextends.util.Connection;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 public class AudioFileDAO {
 
     public void inserir(AudioFile audioFile) {
         String sql = "INSERT INTO audio_file (nome, caminho_original, formato, tamanho) VALUES (?, ?, ?, ?, ?)";
 
-        try (Connection connection = Conexao.getConnection()) {
+        try (java.sql.Connection connection = Connection.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, audioFile.getNome());
             statement.setString(2, audioFile.getCaminhoOriginal());

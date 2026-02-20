@@ -2,10 +2,15 @@ package br.edu.ifpb.sonoryextends.controller;
 
 import br.edu.ifpb.sonoryextends.service.AudioConversionService;
 
+import br.edu.ifpb.sonoryextends.util.SceneManager;
 import javafx.concurrent.Task;
 import javafx.scene.control.*;
 import javafx.fxml.FXML;
+import javafx.scene.layout.VBox;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.stage.DirectoryChooser;
 
 import java.io.File;
 
@@ -16,6 +21,12 @@ public class ConvertController {
     private ComboBox<String> formatComboBox;
     @FXML
     private ProgressBar progressBar;
+    @FXML
+    private Label folderLabel;
+    @FXML
+    private VBox rootPane;
+
+    private File selectedFolder;
     private File selectFile;
 
     @FXML
@@ -46,7 +57,12 @@ public class ConvertController {
             return;
         }
 
-        String outputPath = selectFile.getParent() + "/" + selectFile.getName().replaceAll("\\.[^.]+$", "") + "." + format;
+        if (selectedFolder == null) {
+            showAlert("Selecione uma pasta de destino.");
+            return;
+        }
+
+        String outputPath = selectedFolder.getAbsolutePath() + "/" + selectFile.getName().replaceAll("\\.[^.]+$", "") + "." + format;
         File outputFile = new File(outputPath);
 
         AudioConversionService service = new AudioConversionService();
@@ -58,7 +74,8 @@ public class ConvertController {
             progressBar.setProgress(0);
 
             if (task.getValue()) {
-                showAlert("Conversão concluída!");
+                Stage stage = (Stage) rootPane.getScene().getWindow();
+                SceneManager.switchScene(stage, "src/main/resources/view/playback-view.fxml");
             } else {
                 showAlert("Erro na conversão.");
             }
@@ -67,9 +84,29 @@ public class ConvertController {
         task.setOnFailed(event -> {
             progressBar.progressProperty().unbind();
             progressBar.setProgress(0);
-            showAlert("Falha inesperada.");
+
+            Throwable erro = task.getException();
+            erro.printStackTrace();
+            showAlert("Falha inesperada: " + erro.getMessage());
         });
         new Thread(task).start();
+    }
+
+    @FXML
+    private void handleSelectFolder() {
+        DirectoryChooser chooser = new DirectoryChooser();
+        chooser.setTitle("Selecionar pasta de destino.");
+        selectedFolder = chooser.showDialog(null);
+
+        if (selectedFolder != null) {
+            folderLabel.setText(selectedFolder.getAbsolutePath());
+        }
+    }
+
+    @FXML
+    private void handleGoToPlayback() {
+        Stage stage = (Stage) rootPane.getScene().getWindow();
+        SceneManager.switchScene(stage, "src/main/resources/view/playback-view.fxml");
     }
 
     private void showAlert(String message) {

@@ -18,6 +18,12 @@
     <ComboBox fx:id="formatComboBox"
               promptText="Selecione o formato de destino" />
 
+    <Button text="Selecionar Pasta de Destino"
+            onAction="#handleSelectFolder"/>
+
+    <Label fx:id="folderLabel"
+           text="Nenhuma pasta selecionada"/>
+
     <Button text="Converter"
             onAction="#handleConvert" />
 

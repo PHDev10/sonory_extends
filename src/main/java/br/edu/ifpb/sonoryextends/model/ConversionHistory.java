@@ -11,8 +11,9 @@ public class ConversionHistory {
     private LocalDateTime dataConversao;
     private String status;
 
-    public ConversionHistory(Long id, String nomeOriginal, String formatoOriginal, String formatoDeConversao, String pacoteDeSaida, LocalDateTime dataConversao, String status) {
-        this.id = id;
+    public ConversionHistory() {}
+
+    public ConversionHistory(String nomeOriginal, String formatoOriginal, String formatoDeConversao, String pacoteDeSaida, LocalDateTime dataConversao, String status) {
         this.nomeOriginal = nomeOriginal;
         this.formatoOriginal = formatoOriginal;
         this.formatoDeConversao = formatoDeConversao;

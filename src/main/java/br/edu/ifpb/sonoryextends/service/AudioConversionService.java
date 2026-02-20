@@ -10,7 +10,7 @@ public class AudioConversionService {
         return new Task<Boolean>() {
             @Override
             protected Boolean call() throws Exception {
-                List<String> command = List.of("ffmepg", "-y", "-i", inputFile.getAbsolutePath(), outputFile.getAbsolutePath());
+                List<String> command = List.of("ffmpeg", "-y", "-i", inputFile.getAbsolutePath(), outputFile.getAbsolutePath());
 
                 ProcessBuilder pb = new ProcessBuilder(command);
                 pb.redirectErrorStream(true);
