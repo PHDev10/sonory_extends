@@ -30,12 +30,13 @@ CREATE TABLE conversion_history(
 	formato_conversao VARCHAR(100) NOT NULL,
 	pacote_saida TEXT,
 	data_conversao TIMESTAMP,
-    user_id INT REFERENCES user_profile,
-	status VARCHAR(50)
+    user_id INT,
+	status VARCHAR(50),
+
+	CONSTRAINT fk_conversion_history_user_profile FOREIGN KEY (user_id) REFERENCES user_profile (id)
 );
 
 CREATE TABLE user_profile(
      id SERIAL PRIMARY KEY,
      nome VARCHAR(100) NOT NULL UNIQUE
 );
-

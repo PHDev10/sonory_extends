@@ -19,7 +19,6 @@ public class PlaybackController {
             if (mediaPlayer != null) {
                 mediaPlayer.stop();
             }
-
             Media media = new Media(new File(selectedFile).toURI().toString());
             mediaPlayer = new MediaPlayer(media);
             mediaPlayer.play();

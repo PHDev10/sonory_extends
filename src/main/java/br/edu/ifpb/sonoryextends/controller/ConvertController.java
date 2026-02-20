@@ -44,6 +44,7 @@ public class ConvertController {
             fileLabel.setText(selectFile.getName());
         }
     }
+
     @FXML
     private void handleConvert() {
         if (selectFile == null) {
@@ -62,7 +63,8 @@ public class ConvertController {
             return;
         }
 
-        String outputPath = selectedFolder.getAbsolutePath() + "/" + selectFile.getName().replaceAll("\\.[^.]+$", "") + "." + format;
+        String outputPath = selectedFolder.getAbsolutePath() + "/" + selectFile.getName().replaceAll("\\.[^.]+$", "")
+                + "." + format;
         File outputFile = new File(outputPath);
 
         AudioConversionService service = new AudioConversionService();
@@ -75,7 +77,7 @@ public class ConvertController {
 
             if (task.getValue()) {
                 Stage stage = (Stage) rootPane.getScene().getWindow();
-                SceneManager.switchScene(stage, "src/main/resources/view/playback-view.fxml");
+                SceneManager.switchScene(stage, "/view/playback-view.fxml");
             } else {
                 showAlert("Erro na conversão.");
             }
@@ -106,7 +108,7 @@ public class ConvertController {
     @FXML
     private void handleGoToPlayback() {
         Stage stage = (Stage) rootPane.getScene().getWindow();
-        SceneManager.switchScene(stage, "src/main/resources/view/playback-view.fxml");
+        SceneManager.switchScene(stage, "/view/playback-view.fxml");
     }
 
     private void showAlert(String message) {

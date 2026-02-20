@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox spacing="15" alignment="TOP_CENTER"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="br.edu.ifpb.sonoryextends.controller.PlaybackController">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Sonory Extends - Reprodutor de Áudio"
+           style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+
+    <Label text="Arquivos Convertidos:"
+           style="-fx-font-size: 14px;" />
+
+    <ListView fx:id="listaDeVisualizacaoArquivos"
+              prefHeight="250.0"
+              prefWidth="400.0" />
+
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="▶ Reproduzir"
+                onAction="#handlePlay"
+                style="-fx-font-size: 12px;" />
+        
+        <Button text="⏸ Pausar"
+                style="-fx-font-size: 12px;" />
+        
+        <Button text="⏹ Parar"
+                style="-fx-font-size: 12px;" />
+    </HBox>
+
+    <Separator />
+
+    <Label text="Controle de Volume:"
+           style="-fx-font-size: 12px;" />
+
+    <Slider prefWidth="400.0" 
+            min="0" 
+            max="100" 
+            value="50" />
+
+</VBox>
