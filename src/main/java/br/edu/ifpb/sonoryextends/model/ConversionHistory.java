@@ -10,6 +10,7 @@ public class ConversionHistory {
     private String pacoteDeSaida;
     private LocalDateTime dataConversao;
     private String status;
+    private int userId;
 
     public ConversionHistory() {}
 
@@ -77,5 +78,13 @@ public class ConversionHistory {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

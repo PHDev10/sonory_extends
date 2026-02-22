@@ -1,0 +1,37 @@
+.root {
+    -fx-background-color: white;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+/* Botões */
+.button {
+    -fx-background-color: #1E88E5;
+    -fx-text-fill: white;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #1565C0;
+}
+
+/* Labels principais */
+.label {
+    -fx-text-fill: #000000;
+}
+
+/* TableView */
+.table-view {
+    -fx-border-color: #1E88E5;
+    -fx-border-width: 1;
+}
+
+/* ListView */
+.list-view {
+    -fx-border-color: #1E88E5;
+}
+
+/* Slider */
+.slider .track {
+    -fx-background-color: #1E88E5;
+}

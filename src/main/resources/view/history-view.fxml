@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="br.edu.ifpb.sonoryextends.controller.HistoryController"
+            prefWidth="750"
+            prefHeight="450">
+
+    <top>
+        <VBox alignment="CENTER" spacing="10" style="-fx-padding: 15;">
+            <Label text="Sonory Extends" styleClass="title-label"/>
+
+            <Button text="Abrir Pasta do Backup"
+                    prefWidth="250"
+                    onAction="#abrirPastaBackup"/>
+        </VBox>
+    </top>
+
+    <center>
+        <TableView fx:id="table" BorderPane.alignment="CENTER">
+
+            <columns>
+                <TableColumn fx:id="colNomeOriginal" text="Arquivo" prefWidth="160"/>
+                <TableColumn fx:id="colFormatoOriginal" text="Formato Original" prefWidth="130"/>
+                <TableColumn fx:id="colFormatoConversao" text="Convertido Para" prefWidth="130"/>
+                <TableColumn fx:id="colData" text="Data" prefWidth="170"/>
+                <TableColumn fx:id="colStatus" text="Status" prefWidth="110"/>
+            </columns>
+
+        </TableView>
+    </center>
+
+</BorderPane>

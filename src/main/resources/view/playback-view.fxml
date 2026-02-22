@@ -4,44 +4,33 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<VBox spacing="15" alignment="TOP_CENTER"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="br.edu.ifpb.sonoryextends.controller.PlaybackController">
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="br.edu.ifpb.sonoryextends.controller.HistoryController"
+            prefWidth="750"
+            prefHeight="450">
 
-    <padding>
-        <Insets top="20" right="20" bottom="20" left="20"/>
-    </padding>
+    <top>
+        <VBox alignment="CENTER" spacing="10" style="-fx-padding: 15;">
+            <Label text="Sonory Extends" styleClass="title-label"/>
 
-    <Label text="Sonory Extends - Reprodutor de Áudio"
-           style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+            <Button text="Abrir Pasta do Backup"
+                    prefWidth="250"
+                    onAction="#abrirPastaBackup"/>
+        </VBox>
+    </top>
 
-    <Label text="Arquivos Convertidos:"
-           style="-fx-font-size: 14px;" />
+    <center>
+        <TableView fx:id="table" BorderPane.alignment="CENTER">
 
-    <ListView fx:id="listaDeVisualizacaoArquivos"
-              prefHeight="250.0"
-              prefWidth="400.0" />
+            <columns>
+                <TableColumn fx:id="colNomeOriginal" text="Arquivo" prefWidth="160"/>
+                <TableColumn fx:id="colFormatoOriginal" text="Formato Original" prefWidth="130"/>
+                <TableColumn fx:id="colFormatoConversao" text="Convertido Para" prefWidth="130"/>
+                <TableColumn fx:id="colData" text="Data" prefWidth="170"/>
+                <TableColumn fx:id="colStatus" text="Status" prefWidth="110"/>
+            </columns>
 
-    <HBox spacing="10" alignment="CENTER">
-        <Button text="▶ Reproduzir"
-                onAction="#handlePlay"
-                style="-fx-font-size: 12px;" />
-        
-        <Button text="⏸ Pausar"
-                style="-fx-font-size: 12px;" />
-        
-        <Button text="⏹ Parar"
-                style="-fx-font-size: 12px;" />
-    </HBox>
+        </TableView>
+    </center>
 
-    <Separator />
-
-    <Label text="Controle de Volume:"
-           style="-fx-font-size: 12px;" />
-
-    <Slider prefWidth="400.0" 
-            min="0" 
-            max="100" 
-            value="50" />
-
-</VBox>
+</BorderPane>

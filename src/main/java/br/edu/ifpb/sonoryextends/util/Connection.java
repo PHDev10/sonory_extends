@@ -1,6 +1,7 @@
 package br.edu.ifpb.sonoryextends.util;
 
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class Connection {
@@ -12,4 +13,7 @@ public class Connection {
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
 
+    public PreparedStatement pr() {
+        return null;
+    }
 }

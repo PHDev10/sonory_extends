@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="br.edu.ifpb.sonoryextends.controller.LoginController">
+
+    <center>
+        <VBox alignment="CENTER"
+              spacing="20"
+              style="-fx-padding: 40;">
+
+            <Label text="Sonory Extends" styleClass="title-label"/>
+
+            <Label text="Digite seu nome de usuário:"/>
+
+            <TextField fx:id="txtNome"
+                       prefWidth="250"
+                       promptText="Nome do usuário"/>
+
+            <Button text="Entrar"
+                    prefWidth="250"
+                    onAction="#handleEntrar"/>
+
+        </VBox>
+    </center>
+
+</BorderPane>

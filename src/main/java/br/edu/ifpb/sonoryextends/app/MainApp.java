@@ -8,7 +8,7 @@ import javafx.scene.Scene;
 public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/convert-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/user-select-view.fxml"));
         Scene scene = new Scene(loader.load(), 500, 400);
 
         stage.setTitle("Sonory Extends");

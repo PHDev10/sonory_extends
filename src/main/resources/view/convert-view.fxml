@@ -2,32 +2,53 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
-<VBox fx:id="rootPane" spacing="15" alignment="CENTER"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="br.edu.ifpb.sonoryextends.controller.ConvertController">
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="br.edu.ifpb.sonoryextends.controller.ConvertController">
 
-    <Label text="Sonory Extends - Conversor de Áudio"
-           style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+    <top>
+        <Label text="Sonory Extends" styleClass="title-label"/>
+    </top>
 
-    <Button text="Selecionar Arquivo"
-            onAction="#handleSelectFile" />
+    <center>
+        <VBox fx:id="rootPane"
+              spacing="15"
+              alignment="CENTER"
+              style="-fx-padding: 20;">
 
-    <Label fx:id="fileLabel" text="Nenhum arquivo selecionado" />
+            <Button text="Selecionar Arquivo"
+                    prefWidth="220"
+                    onAction="#handleSelectFile"/>
 
-    <ComboBox fx:id="formatComboBox"
-              promptText="Selecione o formato de destino" />
+            <Label fx:id="fileLabel"
+                   text="Nenhum arquivo selecionado"/>
 
-    <Button text="Selecionar Pasta de Destino"
-            onAction="#handleSelectFolder"/>
+            <ComboBox fx:id="formatComboBox"
+                      prefWidth="220"
+                      promptText="Selecione o formato"/>
 
-    <Label fx:id="folderLabel"
-           text="Nenhuma pasta selecionada"/>
+            <Button text="Selecionar Pasta de Destino"
+                    prefWidth="220"
+                    onAction="#handleSelectFolder"/>
 
-    <Button text="Converter"
-            onAction="#handleConvert" />
+            <Label fx:id="folderLabel"
+                   text="Nenhuma pasta selecionada"/>
 
-    <ProgressBar fx:id="progressBar"
-                 prefWidth="300.0" />
+            <Button text="Converter"
+                    prefWidth="220"
+                    onAction="#handleConvert"/>
 
-</VBox>
+            <ProgressBar fx:id="progressBar"
+                         prefWidth="300"/>
+
+            <Separator/>
+
+            <Button text="Ver Histórico"
+                    prefWidth="220"
+                    onAction="#abrirHistorico"/>
+
+        </VBox>
+    </center>
+
+</BorderPane>

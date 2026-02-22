@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ConversionHistoryDAO {
     public void save(ConversionHistory conversionHistory) {
-        String sql = "INSERT INTO conversion_history (nome_original, formato_original, formato_conversao, pacote_saida, data_conversao, status) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO conversion_history (nome_original, formato_original, formato_conversao, pacote_saida, data_conversao, user_id, status) VALUES (?, ?, ?, ?, ?, ?, ?)";
         
         try (java.sql.Connection connection = Connection.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -19,7 +19,8 @@ public class ConversionHistoryDAO {
             statement.setString(3, conversionHistory.getFormatoConversao());
             statement.setString(4, conversionHistory.getPacoteDeSaida());
             statement.setTimestamp(5, Timestamp.valueOf(conversionHistory.getDataConversao()));
-            statement.setString(6, conversionHistory.getStatus());
+            statement.setInt(6, conversionHistory.getUserId());
+            statement.setString(7, conversionHistory.getStatus());
 
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -29,7 +30,7 @@ public class ConversionHistoryDAO {
 
     public List<ConversionHistory> findAll() {
         List<ConversionHistory> list = new ArrayList<>();
-        String sql = "SELECT * FROM conversion_history ORDER BY conversion_date DESC";
+        String sql = "SELECT * FROM conversion_history ORDER BY data_conversao DESC";
 
         try (java.sql.Connection connection = Connection.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql);
@@ -44,6 +45,38 @@ public class ConversionHistoryDAO {
                 history.setFormatoConversao(resultSet.getString("formato_conversao"));
                 history.setPacoteDeSaida(resultSet.getString("pacote_saida"));
                 history.setDataConversao(resultSet.getTimestamp("data_conversao").toLocalDateTime());
+                history.setStatus(resultSet.getString("status"));
+
+                list.add(history);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+    public List<ConversionHistory> findLast7DaysByUser(int userId) {
+        List<ConversionHistory> list = new ArrayList<>();
+
+        String sql = "SELECT * FROM conversion_history WHERE user_id = ? AND data_conversao >= NOW() - INTERVAL '7 DAYS' ORDER BY data_conversao DESC";
+
+        try (java.sql.Connection connection = Connection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)){
+
+            statement.setInt(1, userId);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                ConversionHistory history = new ConversionHistory();
+
+                history.setId(resultSet.getLong("id"));
+                history.setNomeOriginal(resultSet.getString("nome_original"));
+                history.setFormatoOriginal(resultSet.getString("formato_original"));
+                history.setFormatoConversao(resultSet.getString("formato_conversao"));
+                history.setPacoteDeSaida(resultSet.getString("pacote_saida"));
+                history.setDataConversao(resultSet.getTimestamp("data_conversao").toLocalDateTime());
+                history.setUserId(resultSet.getInt("user_id"));
                 history.setStatus(resultSet.getString("status"));
 
                 list.add(history);
