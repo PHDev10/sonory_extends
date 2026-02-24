@@ -1,38 +1,169 @@
+/* =========================
+   CONFIGURAÇÃO GLOBAL
+========================= */
+
 .root {
     -fx-font-family: "Segoe UI";
+    -fx-font-size: 14px;
     -fx-background-color: linear-gradient(to bottom right, #ffffff, #eef4fb);
 }
 
+.root-pane {
+    -fx-background-color: transparent;
+}
+
+/* =========================
+   CABEÇALHO
+========================= */
+
+.header-box {
+    -fx-padding: 35 0 20 0;
+    -fx-alignment: center;
+}
+
 .title-label {
-    -fx-font-size: 30px;
+    -fx-font-size: 32px;
     -fx-font-weight: bold;
     -fx-text-fill: #0f172a;
-    -fx-padding: 25 0 15 0;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+}
+
+.subtitle-label {
+    -fx-font-size: 18px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #111111;
+    -fx-alignment: center;
+}
+
+/* =========================
+   CONTAINER CENTRAL
+========================= */
+
+.center-box {
+    -fx-padding: 20;
+    -fx-alignment: center;
 }
 
 .vbox {
     -fx-background-color: white;
-    -fx-background-radius: 15;
-    -fx-padding: 30;
+    -fx-background-radius: 18;
+    -fx-padding: 35;
+    -fx-spacing: 18;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 25, 0.2, 0, 8);
 }
 
-.button {
-    -fx-background-color: linear-gradient(to right, #2563eb, #1d4ed8);
-    -fx-text-fill: white;
+/* =========================
+   ÁREA DE CONVERSÃO
+========================= */
+
+.file-box {
+    -fx-background-color: #f1f5f9;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-border-color: #cbd5e1;
+    -fx-border-style: dashed;
+    -fx-border-width: 2;
+    -fx-padding: 25;
+    -fx-alignment: center;
+}
+
+.file-label {
     -fx-font-size: 14px;
-    -fx-font-weight: 500;
-    -fx-background-radius: 10;
+    -fx-text-fill: #334155;
+}
+
+/* =========================
+   INPUTS
+========================= */
+
+.input-field {
+    -fx-pref-width: 280px;
+    -fx-pref-height: 38px;
+    -fx-font-size: 14px;
+
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+
+    -fx-border-color: #1976D2;
+    -fx-border-width: 1.5;
+
+    -fx-background-color: #F8FAFF;
+}
+
+.input-field:focused {
+    -fx-border-color: #0D47A1;
+    -fx-border-width: 2;
+}
+
+/* =========================
+   BOTÕES - BASE PADRÃO
+========================= */
+
+.button {
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-background-radius: 12;
+    -fx-padding: 10 22;
     -fx-cursor: hand;
-    -fx-padding: 10 20;
     -fx-transition: all 0.2s ease-in-out;
 }
 
-.button:hover {
-    -fx-background-color: linear-gradient(to right, #1e40af, #1e3a8a);
-    -fx-scale-x: 1.03;
-    -fx-scale-y: 1.03;
+/* =========================
+   BOTÃO PRINCIPAL AZUL
+========================= */
+
+.primary-button {
+    -fx-background-color: linear-gradient(to right, #2563eb, #1d4ed8);
+    -fx-text-fill: white;
 }
+
+.primary-button:hover {
+    -fx-background-color: linear-gradient(to right, #1e40af, #1e3a8a);
+    -fx-scale-x: 1.04;
+    -fx-scale-y: 1.04;
+}
+
+/* =========================
+   BOTÃO DE AÇÃO (Selecionar Arquivo)
+========================= */
+
+.action-button {
+    -fx-background-color: #e0f2fe;
+    -fx-text-fill: #0369a1;
+    -fx-border-color: #38bdf8;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 12;
+}
+
+.action-button:hover {
+    -fx-background-color: #bae6fd;
+}
+
+/* =========================
+   BOTÃO DE CONVERSÃO (DESTAQUE)
+========================= */
+
+.convert-button {
+    -fx-pref-width: 230px;
+    -fx-pref-height: 48px;
+
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+
+    -fx-background-color: linear-gradient(to right, #16a34a, #15803d);
+    -fx-text-fill: white;
+}
+
+.convert-button:hover {
+    -fx-background-color: linear-gradient(to right, #15803d, #166534);
+    -fx-scale-x: 1.06;
+    -fx-scale-y: 1.06;
+}
+
+/* =========================
+   BOTÃO SECUNDÁRIO
+========================= */
 
 .secondary-button {
     -fx-background-color: #e5e7eb;
@@ -43,18 +174,68 @@
     -fx-background-color: #d1d5db;
 }
 
-.label {
-    -fx-text-fill: #111827;
-    -fx-font-size: 14px;
+/* =========================
+   BOTÃO PERIGO (LIMPAR / REMOVER)
+========================= */
+
+.danger-button {
+    -fx-background-color: #fee2e2;
+    -fx-text-fill: #b91c1c;
+    -fx-border-color: #ef4444;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 12;
 }
+
+.danger-button:hover {
+    -fx-background-color: #fecaca;
+}
+
+/* =========================
+   TABELAS (Histórico)
+========================= */
+
+.table-view {
+    -fx-font-size: 13px;
+}
+
+.table-view .column-header {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.table-view .cell {
+    -fx-font-size: 13px;
+}
+
+/* =========================
+   OUTROS COMPONENTES
+========================= */
 
 .combo-box {
     -fx-background-radius: 8;
     -fx-border-radius: 8;
 }
 
+/* =========================
+   BARRA INFERIOR
+========================= */
+
+.bottom-bar {
+    -fx-padding: 20 40;
+    -fx-background-color: transparent;
+}
+
 .progress-bar {
     -fx-accent: #2563eb;
+    -fx-background-radius: 12;
+}
+
+.progress-bar > .track {
+    -fx-background-radius: 12;
+}
+
+.progress-bar > .bar {
+    -fx-background-radius: 12;
 }
 
 .separator *.line {

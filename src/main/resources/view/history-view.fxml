@@ -5,13 +5,14 @@
 <?import javafx.geometry.Insets?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="br.edu.ifpb.sonoryextends.controller.HistoryController"
-            prefWidth="750"
-            prefHeight="450">
+            fx:controller="br.edu.ifpb.sonoryextends.controller.HistoryController">
 
     <top>
         <VBox alignment="CENTER" spacing="10" style="-fx-padding: 15;">
             <Label text="Sonory Extends" styleClass="title-label"/>
+
+            <Button text="← Voltar"
+                    onAction="#handleVoltar"/>
 
             <Button text="Abrir Pasta do Backup"
                     prefWidth="250"

@@ -86,6 +86,11 @@ public class HistoryController {
         new Thread(task).start();
     }
 
+    @FXML
+    private void handleVoltar() {
+        SceneManager.switchScene("/view/convert-view.fxml");
+    }
+
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Sonory Extends");

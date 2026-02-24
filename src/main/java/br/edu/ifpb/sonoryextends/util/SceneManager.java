@@ -5,28 +5,33 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 public class SceneManager {
+    private static Stage stage;
     private static Scene scene;
 
-    public static void init(Stage stage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(
+    private static final double WIDTH = 900;
+    private static final double HEIGHT = 600;
+
+    public static void init(Stage primaryStage) throws Exception {
+        stage = primaryStage;
+
+        Parent root = FXMLLoader.load(
                 SceneManager.class.getResource("/view/user-select-view.fxml")
         );
 
-        Parent root = loader.load();
-        scene = new Scene(root, 500, 400);
-        scene.getStylesheets().add(
-                SceneManager.class.getResource("/style/style.css").toExternalForm()
+        scene = new Scene(root, WIDTH, HEIGHT);
+        System.out.println(
+                SceneManager.class.getResource("/style/style.css")
         );
+        scene.getStylesheets().add(SceneManager.class.getResource("/style/style.css").toExternalForm());
 
         stage.setTitle("Sonory Extends");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
-    public static Object switchScene(String fxmlPath) {
+    public static <T> T switchScene(String fxmlPath) {
         try {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource(fxmlPath));
 
@@ -34,8 +39,9 @@ public class SceneManager {
             scene.setRoot(root);
 
             return loader.getController();
-        } catch (IOException e) {
-            throw new RuntimeException("Erro ao carregar o FXML: " + fxmlPath);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

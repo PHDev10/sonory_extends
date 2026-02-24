@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="br.edu.ifpb.sonoryextends.controller.LoginController">
+            fx:controller="br.edu.ifpb.sonoryextends.controller.LoginController"
+            styleClass="root-pane">
 
     <top>
         <VBox alignment="CENTER" styleClass="header-box">
@@ -13,17 +17,18 @@
     </top>
 
     <center>
-        <VBox alignment="CENTER" spacing="20">
+        <VBox alignment="CENTER" spacing="25" styleClass="center-box">
 
-            <Label text="Digite seu nome:" />
+            <Label text="Digite seu nome:"
+                   styleClass="subtitle-label"/>
 
             <TextField fx:id="txtNome"
                        promptText="Nome do usuário"
-                       maxWidth="300"/>
+                       styleClass="input-field"/>
 
             <Button text="Entrar"
                     onAction="#handleEntrar"
-                    maxWidth="200"/>
+                    styleClass="primary-button"/>
 
         </VBox>
     </center>

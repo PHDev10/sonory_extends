@@ -8,50 +8,70 @@
             fx:controller="br.edu.ifpb.sonoryextends.controller.ConvertController">
 
     <top>
-        <Label text="Sonory Extends" styleClass="title-label"/>
+        <HBox alignment="CENTER_LEFT" spacing="10" styleClass="top-bar">
+
+            <Button text="Voltar ao Login"
+                    onAction="#voltarLogin"
+                    styleClass="top-button"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Label text="Sonory Extends" styleClass="title-label"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Button text="Ver Histórico"
+                    onAction="#abrirHistorico"
+                    styleClass="top-button"/>
+        </HBox>
     </top>
 
     <center>
-        <VBox fx:id="rootPane"
-              spacing="15"
-              alignment="CENTER"
-              style="-fx-padding: 20;">
+        <HBox spacing="60" alignment="CENTER" styleClass="main-container">
 
-            <Button text="Selecionar Arquivo"
-                    prefWidth="220"
-                    onAction="#handleSelectFile"/>
+            <VBox spacing="15" alignment="CENTER_LEFT">
 
-            <Label fx:id="fileLabel"
-                   text="Nenhum arquivo selecionado"/>
+                <Button text="Selecionar Arquivo(s)"
+                        onAction="#handleSelectFile"
+                        styleClass="action-button"/>
 
-            <ComboBox fx:id="formatComboBox"
-                      prefWidth="220"
-                      promptText="Selecione o formato"/>
+                <Button text="Remover Arquivo(s)"
+                        onAction="#handleRemoveFile"
+                        styleClass="danger-button"/>
 
-            <Button text="Selecionar Pasta de Destino"
-                    prefWidth="220"
-                    onAction="#handleSelectFolder"/>
+                <Label fx:id="fileLabel"
+                       text="Nenhum arquivo selecionado"
+                       styleClass="info-label"/>
 
-            <Label fx:id="folderLabel"
-                   text="Nenhuma pasta selecionada"/>
+                <ComboBox fx:id="formatComboBox"
+                          promptText="Selecione o Formato"
+                          styleClass="standard-combo"/>
 
-            <Button text="Converter"
-                    prefWidth="220"
-                    onAction="#handleConvert"/>
+                <Button text="Selecionar Pasta de Destino"
+                        onAction="#handleSelectFolder"
+                        styleClass="standard-button"/>
 
-            <ProgressBar fx:id="progressBar"
-                         prefWidth="300"/>
+                <Label fx:id="folderLabel"
+                       text="Nenhuma pasta selecionada"
+                       styleClass="info-label"/>
 
-            <Separator/>
+            </VBox>
 
-            <Button text="Ver Histórico"
-                    prefWidth="220"
-                    onAction="#abrirHistorico"/>
+            <VBox spacing="25" alignment="CENTER">
 
-            <Button text="Voltar ao Login"
-                    styleClass="secundary-button"
-                    onAction="#voltarLogin"/>
-        </VBox>
+                <Button text="Converter"
+                        onAction="#handleConvert"
+                        styleClass="convert-button"/>
+            </VBox>
+
+        </HBox>
     </center>
+
+    <bottom>
+        <HBox alignment="CENTER" styleClass="bottom-bar">
+            <ProgressBar fx:id="progressBar"
+                         prefWidth="500"/>
+        </HBox>
+    </bottom>
 
 </BorderPane>

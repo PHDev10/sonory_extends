@@ -5,22 +5,15 @@ import br.edu.ifpb.sonoryextends.model.User;
 import br.edu.ifpb.sonoryextends.util.SceneManager;
 import br.edu.ifpb.sonoryextends.util.Session;
 import javafx.concurrent.Task;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.fxml.FXML;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import javax.imageio.IIOException;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -36,12 +29,16 @@ public class ConvertController {
     @FXML
     private Label folderLabel;
 
+    private File selectedFile;
     private File selectedFolder;
     private List<File> selectedFiles;
 
     @FXML
     private void initialize() {
         formatComboBox.getItems().addAll("mp3", "wav");
+
+        progressBar.setVisible(false);
+        progressBar.setManaged(false);
     }
 
     @FXML
@@ -79,6 +76,10 @@ public class ConvertController {
             showAlert("Selecione um formato para conversão.");
             return;
         }
+
+        progressBar.setVisible(true);
+        progressBar.setManaged(true);
+        progressBar.setProgress(0);
 
         Task<List<File>> mainTask = new Task<>() {
 
@@ -127,6 +128,8 @@ public class ConvertController {
 
             progressBar.progressProperty().unbind();
             progressBar.setProgress(0);
+            progressBar.setVisible(false);
+            progressBar.setManaged(false);
 
             List<File> arquivosConvertidos = mainTask.getValue();
             PlaybackController controller = (PlaybackController) SceneManager.switchScene("/view/playback-view.fxml");
@@ -192,6 +195,13 @@ public class ConvertController {
         Files.copy(arquivoConvertido.toPath(), backupFile, StandardCopyOption.REPLACE_EXISTING);
 
         return backupFile.toFile();
+    }
+
+    @FXML
+    private void handleRemoveFile() {
+        if (fileLabel != null) {
+            fileLabel.setText("Nenhum arquivo selecionado");
+        }
     }
 
     private void showAlert(String message) {
