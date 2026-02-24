@@ -2,6 +2,8 @@ package br.edu.ifpb.sonoryextends.controller;
 
 import br.edu.ifpb.sonoryextends.util.SceneManager;
 import br.edu.ifpb.sonoryextends.util.Session;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ListCell;
@@ -13,6 +15,9 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 public class PlaybackController {
@@ -76,9 +81,31 @@ public class PlaybackController {
 
     @FXML
     private void voltarParaConversao() {
-        Stage stage = (Stage) listaDeVisualizacaoArquivos.getScene().getWindow();
-        ConvertController controller = (ConvertController) SceneManager.switchScene(stage, "/view/convert-view.fxml");
-        controller.setUsuarioLogado(Session.getUsuarioAtual());
+        stopAudio();
+        ConvertController controller = (ConvertController) SceneManager.switchScene("/view/convert-view.fxml");
+    }
+
+    @FXML
+    private void abrirPastaBackup() {
+        Task<Void> task = new Task<>() {
+            @Override
+            protected Void call() throws Exception {
+            String nomeSeguro = Session.getUsuarioAtual().getNome().toLowerCase().replaceAll("[^a-z0-9]", "_");
+
+            Path pasta = Paths.get(System.getProperty("user.home"),"SonoryExtends", "audio_backups", "user_" + nomeSeguro);
+
+            if (!Files.exists(pasta)) {
+                Platform.runLater(() ->
+                        showAlert("Pasta não encontrada."));
+                return null;
+            }
+            new ProcessBuilder("xdg-open", pasta.toString()).start();
+
+            return null;
+            }
+        };
+
+        new Thread(task).start();
     }
 
     private void showAlert(String message) {
@@ -99,6 +126,13 @@ public class PlaybackController {
 
     public void setListaDeVisualizacaoArquivos(ListView<File> listaDeVisualizacaoArquivos) {
         this.listaDeVisualizacaoArquivos = listaDeVisualizacaoArquivos;
+    }
+
+    public void stopAudio() {
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+            mediaPlayer.dispose();
+        }
     }
 
     public MediaPlayer getMediaPlayer() {

@@ -3,6 +3,7 @@ package br.edu.ifpb.sonoryextends.controller;
 import br.edu.ifpb.sonoryextends.dao.UserDAO;
 import br.edu.ifpb.sonoryextends.model.ConversionHistory;
 import br.edu.ifpb.sonoryextends.model.User;
+import br.edu.ifpb.sonoryextends.util.SceneManager;
 import br.edu.ifpb.sonoryextends.util.Session;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,11 +30,10 @@ public class LoginController {
             mostrarAlerta("Erro", "Nome digitado inválido");
             return;
         }
-        User user = userDAO.finByName(nomeDigitado);
+        User user = userDAO.findByName(nomeDigitado);
 
         if (user != null) {
             usuarioLogado = user;
-            entarNoSistema();
         } else {
             Alert confirmacao = new Alert(Alert.AlertType.CONFIRMATION);
             confirmacao.setTitle("Usuário não encontrado.");
@@ -43,29 +43,20 @@ public class LoginController {
             Optional<ButtonType> resultado = confirmacao.showAndWait();
 
             if (resultado.isPresent() && resultado.get() == ButtonType.OK) {
-                User newUser = new User(nomeDigitado);
-                usuarioLogado = userDAO.save(newUser);
-                entarNoSistema();
+                usuarioLogado = userDAO.save(new User(nomeDigitado));
+            } else {
+                return;
             }
         }
+        Session.setUsuarioAtual(usuarioLogado);
 
-        Session.setUsuarioAtual(user);
+        entrarNoSistema();
     }
 
-    public void entarNoSistema() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/convert-view.fxml"));
+    public void entrarNoSistema() {
+        Session.setUsuarioAtual(usuarioLogado);
 
-            Scene scene = new Scene(loader.load());
-            ConvertController controller = loader.getController();
-            controller.setUsuarioLogado(usuarioLogado);
-
-            Stage stage = (Stage) txtNome.getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Sonory Extends - Conversão");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        ConvertController controller = (ConvertController) SceneManager.switchScene("/view/convert-view.fxml");
     }
 
     public void mostrarAlerta(String titulo, String mensagem) {

@@ -12,8 +12,4 @@ public class Connection {
     public static java.sql.Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
-
-    public PreparedStatement pr() {
-        return null;
-    }
 }

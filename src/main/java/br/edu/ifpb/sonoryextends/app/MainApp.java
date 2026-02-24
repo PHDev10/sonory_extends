@@ -1,19 +1,16 @@
 package br.edu.ifpb.sonoryextends.app;
 
+import br.edu.ifpb.sonoryextends.util.SceneManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.Parent;
 
 public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/user-select-view.fxml"));
-        Scene scene = new Scene(loader.load(), 500, 400);
-
-        stage.setTitle("Sonory Extends");
-        stage.setScene(scene);
-        stage.show();
+        SceneManager.init(stage);
     }
 
     public static void main(String[] args) {

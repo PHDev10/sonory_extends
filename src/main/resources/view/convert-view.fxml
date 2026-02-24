@@ -48,6 +48,9 @@
                     prefWidth="220"
                     onAction="#abrirHistorico"/>
 
+            <Button text="Voltar ao Login"
+                    styleClass="secundary-button"
+                    onAction="#voltarLogin"/>
         </VBox>
     </center>
 

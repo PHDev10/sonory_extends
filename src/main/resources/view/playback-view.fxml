@@ -5,32 +5,51 @@
 <?import javafx.geometry.Insets?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="br.edu.ifpb.sonoryextends.controller.HistoryController"
+            fx:controller="br.edu.ifpb.sonoryextends.controller.PlaybackController"
             prefWidth="750"
             prefHeight="450">
 
     <top>
         <VBox alignment="CENTER" spacing="10" style="-fx-padding: 15;">
-            <Label text="Sonory Extends" styleClass="title-label"/>
+            <Label text="Sonory Extends - Reprodutor"
+                   styleClass="title-label"/>
+
+            <Button text="← Voltar"
+                    prefWidth="200"
+                    onAction="#voltarParaConversao"/>
 
             <Button text="Abrir Pasta do Backup"
-                    prefWidth="250"
+                    prefWidth="200"
                     onAction="#abrirPastaBackup"/>
         </VBox>
     </top>
 
     <center>
-        <TableView fx:id="table" BorderPane.alignment="CENTER">
+        <VBox spacing="20" alignment="CENTER">
 
-            <columns>
-                <TableColumn fx:id="colNomeOriginal" text="Arquivo" prefWidth="160"/>
-                <TableColumn fx:id="colFormatoOriginal" text="Formato Original" prefWidth="130"/>
-                <TableColumn fx:id="colFormatoConversao" text="Convertido Para" prefWidth="130"/>
-                <TableColumn fx:id="colData" text="Data" prefWidth="170"/>
-                <TableColumn fx:id="colStatus" text="Status" prefWidth="110"/>
-            </columns>
+            <Label text="Arquivos Convertidos:"/>
 
-        </TableView>
+            <ListView fx:id="listaDeVisualizacaoArquivos"
+                      prefWidth="500"
+                      prefHeight="250"/>
+
+            <HBox spacing="15" alignment="CENTER">
+                <Button text="▶ Reproduzir"
+                        onAction="#handlePlay"/>
+
+                <Button text="⏸ Pausar"
+                        onAction="#handlePause"/>
+            </HBox>
+
+            <Label text="Volume"/>
+
+            <Slider fx:id="volumeSlider"
+                    prefWidth="400"
+                    min="0"
+                    max="100"
+                    value="50"/>
+
+        </VBox>
     </center>
 
 </BorderPane>

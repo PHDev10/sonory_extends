@@ -37,14 +37,16 @@ public class ConversionHistoryDAO {
              ResultSet resultSet = statement.executeQuery()) {
 
             while (resultSet.next()) {
+                Timestamp ts = resultSet.getTimestamp("data_conversao");
+
                 ConversionHistory history = new ConversionHistory();
-                
+
                 history.setId(resultSet.getLong("id"));
                 history.setNomeOriginal(resultSet.getString("nome_original"));
                 history.setFormatoOriginal(resultSet.getString("formato_original"));
                 history.setFormatoConversao(resultSet.getString("formato_conversao"));
                 history.setPacoteDeSaida(resultSet.getString("pacote_saida"));
-                history.setDataConversao(resultSet.getTimestamp("data_conversao").toLocalDateTime());
+                history.setDataConversao(ts != null ? ts.toLocalDateTime() : null);
                 history.setStatus(resultSet.getString("status"));
 
                 list.add(history);

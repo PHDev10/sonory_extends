@@ -6,7 +6,7 @@ import br.edu.ifpb.sonoryextends.util.Connection;
 import java.sql.*;
 
 public class UserDAO {
-    public User finByName(String nome) {
+    public User findByName(String nome) {
         String sql = "SELECT * FROM user_profile WHERE nome = ?";
 
         try (java.sql.Connection connection = Connection.getConnection();

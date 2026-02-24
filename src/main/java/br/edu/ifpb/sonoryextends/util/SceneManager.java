@@ -5,23 +5,37 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class SceneManager {
+    private static Scene scene;
 
-    public static Object switchScene(Stage stage, String fxml) {
+    public static void init(Stage stage) throws IOException {
+        FXMLLoader loader = new FXMLLoader(
+                SceneManager.class.getResource("/view/user-select-view.fxml")
+        );
+
+        Parent root = loader.load();
+        scene = new Scene(root, 500, 400);
+        scene.getStylesheets().add(
+                SceneManager.class.getResource("/style/style.css").toExternalForm()
+        );
+
+        stage.setTitle("Sonory Extends");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public static Object switchScene(String fxmlPath) {
         try {
-            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource(fxml));
-            Parent root = loader.load();
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource(fxmlPath));
 
-            Scene scene = new Scene(root);
-            scene.getStylesheets().add(SceneManager.class.getResource("/style/style.css").toExternalForm());
-            stage.setScene(scene);
-            stage.show();
+            Parent root = loader.load();
+            scene.setRoot(root);
 
             return loader.getController();
-        } catch (Exception e) {
-            System.err.println("Erro ao carregar FXML: " + fxml);
-            e.printStackTrace();
-            return null;
+        } catch (IOException e) {
+            throw new RuntimeException("Erro ao carregar o FXML: " + fxmlPath);
         }
     }
 }

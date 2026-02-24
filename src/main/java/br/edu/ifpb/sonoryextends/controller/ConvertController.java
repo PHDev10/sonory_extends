@@ -3,12 +3,14 @@ package br.edu.ifpb.sonoryextends.controller;
 import br.edu.ifpb.sonoryextends.model.ConversionHistory;
 import br.edu.ifpb.sonoryextends.model.User;
 import br.edu.ifpb.sonoryextends.util.SceneManager;
+import br.edu.ifpb.sonoryextends.util.Session;
 import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.fxml.FXML;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
@@ -33,12 +35,9 @@ public class ConvertController {
     private ProgressBar progressBar;
     @FXML
     private Label folderLabel;
-    @FXML
-    private VBox rootPane;
 
     private File selectedFolder;
     private List<File> selectedFiles;
-    private User usuarioLogado;
 
     @FXML
     private void initialize() {
@@ -53,14 +52,15 @@ public class ConvertController {
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Áudios", "*.mp3", "*.wav"));
         selectedFiles = fileChooser.showOpenMultipleDialog(null);
         if (selectedFiles != null && !selectedFiles.isEmpty()) {
-            fileLabel.setText(selectedFiles.size() + "arquivo(s) selecionado(s)");
+            fileLabel.setText(selectedFiles.size() + " arquivo(s) selecionado(s)");
         }
     }
 
     @FXML
     private void handleConvert() {
+        User usuarioLogado = Session.getUsuarioAtual();
         if (usuarioLogado == null) {
-            showAlert("Erro: Usuário não encontrado.");
+            showAlert("Sessão expirada. Faça login novamente.");
             return;
         }
 
@@ -84,7 +84,6 @@ public class ConvertController {
 
             @Override
             protected List<File> call() throws Exception {
-
             List<File> arquivosConvertidos = new ArrayList<>();
 
             int total = selectedFiles.size();
@@ -130,13 +129,13 @@ public class ConvertController {
             progressBar.setProgress(0);
 
             List<File> arquivosConvertidos = mainTask.getValue();
+            PlaybackController controller = (PlaybackController) SceneManager.switchScene("/view/playback-view.fxml");
 
-            Stage stage = (Stage) rootPane.getScene().getWindow();
-
-            PlaybackController controller =
-                    (PlaybackController) SceneManager.switchScene(stage, "/view/playback-view.fxml");
-
-            controller.setArquivosConvertidos(arquivosConvertidos);
+            if (controller != null ) {
+                controller.setArquivosConvertidos(arquivosConvertidos);
+            } else {
+                showAlert("Erro ao abrir tela de reprodução.");
+            }
         });
 
         mainTask.setOnFailed(event -> {
@@ -162,23 +161,18 @@ public class ConvertController {
 
     @FXML
     private void handleGoToPlayback() {
-        Stage stage = (Stage) rootPane.getScene().getWindow();
-        SceneManager.switchScene(stage, "/view/playback-view.fxml");
+        SceneManager.switchScene("/view/playback-view.fxml");
     }
 
     @FXML
     private void abrirHistorico() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/history-view.fxml"));
-            Parent root = loader.load();
+        SceneManager.switchScene("/view/history-view.fxml");
+    }
 
-            Stage stage = new Stage();
-            stage.setTitle("Histórico de Conversões");
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    @FXML
+    private void voltarLogin() {
+        Session.setUsuarioAtual(null);
+        SceneManager.switchScene("/view/user-select-view.fxml");
     }
 
     private File salvarBackup(File arquivoConvertido) throws IOException {
@@ -186,6 +180,7 @@ public class ConvertController {
 
         Path backupBase = Paths.get(home, "SonoryExtends", "audio_backups");
         Files.createDirectories(backupBase);
+        User usuarioLogado = Session.getUsuarioAtual();
         String nomeSeguro = usuarioLogado.getNome().toLowerCase().replaceAll("[^a-z0-9]", "_");
 
         Path userFolder = backupBase.resolve("user_" + nomeSeguro);
@@ -204,11 +199,6 @@ public class ConvertController {
         alert.setTitle("Sonory Extends");
         alert.setContentText(message);
         alert.showAndWait();
-    }
-
-    public void setUsuarioLogado(User user) {
-        this.usuarioLogado = user;
-        System.out.println("Usuário recebido: " + user.getNome());
     }
 
     private String getExtension(String fileName) {
