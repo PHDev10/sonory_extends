@@ -5,21 +5,25 @@ import br.edu.ifpb.sonoryextends.model.ConversionHistory;
 import br.edu.ifpb.sonoryextends.model.User;
 import br.edu.ifpb.sonoryextends.util.SceneManager;
 import br.edu.ifpb.sonoryextends.util.Session;
+import br.edu.ifpb.sonoryextends.util.Connection;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 
-import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 public class HistoryController {
     @FXML
@@ -87,8 +91,34 @@ public class HistoryController {
     }
 
     @FXML
+    private void handleApagarHistorico() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmar exclusão");
+        alert.setHeaderText("Apagar todo o histórico?");
+        alert.setContentText("Essa ação não poderá ser desfeita depois");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            table.getItems().clear();
+            limparArquivoHistorico();
+        }
+    }
+
+    @FXML
     private void handleVoltar() {
         SceneManager.switchScene("/view/convert-view.fxml");
+    }
+
+    private void limparArquivoHistorico() {
+        String sql = "TRUNCATE TABLE conversion_history";
+
+        try (java.sql.Connection conn = Connection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showAlert(String message) {

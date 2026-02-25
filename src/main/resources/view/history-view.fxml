@@ -2,36 +2,55 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="br.edu.ifpb.sonoryextends.controller.HistoryController">
 
     <top>
-        <VBox alignment="CENTER" spacing="10" style="-fx-padding: 15;">
-            <Label text="Sonory Extends" styleClass="title-label"/>
+        <HBox spacing="20" alignment="CENTER_LEFT" styleClass="top-bar">
 
             <Button text="← Voltar"
-                    onAction="#handleVoltar"/>
+                    onAction="#handleVoltar"
+                    styleClass="top-button"/>
 
-            <Button text="Abrir Pasta do Backup"
-                    prefWidth="250"
-                    onAction="#abrirPastaBackup"/>
-        </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Label text="Histórico de Conversões"
+                   styleClass="title-label"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <HBox spacing="15">
+
+                <Button text="Abrir Pasta do Backup"
+                        onAction="#abrirPastaBackup"
+                        styleClass="standard-button"/>
+
+                <Button text="Apagar Histórico"
+                        onAction="#handleApagarHistorico"
+                        styleClass="danger-button"/>
+
+            </HBox>
+
+        </HBox>
     </top>
 
     <center>
-        <TableView fx:id="table" BorderPane.alignment="CENTER">
+        <VBox styleClass="history-container" alignment="CENTER">
 
-            <columns>
-                <TableColumn fx:id="colNomeOriginal" text="Arquivo" prefWidth="160"/>
-                <TableColumn fx:id="colFormatoOriginal" text="Formato Original" prefWidth="130"/>
-                <TableColumn fx:id="colFormatoConversao" text="Convertido Para" prefWidth="130"/>
-                <TableColumn fx:id="colData" text="Data" prefWidth="170"/>
-                <TableColumn fx:id="colStatus" text="Status" prefWidth="110"/>
-            </columns>
+            <TableView fx:id="table" prefHeight="500" prefWidth="900">
 
-        </TableView>
+                <columns>
+                    <TableColumn fx:id="colNomeOriginal" text="Arquivo"/>
+                    <TableColumn fx:id="colFormatoOriginal" text="Formato Original"/>
+                    <TableColumn fx:id="colFormatoConversao" text="Convertido Para"/>
+                    <TableColumn fx:id="colData" text="Data"/>
+                    <TableColumn fx:id="colStatus" text="Status"/>
+                </columns>
+
+            </TableView>
+
+        </VBox>
     </center>
 
 </BorderPane>

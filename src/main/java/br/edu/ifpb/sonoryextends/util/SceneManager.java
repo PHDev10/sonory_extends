@@ -9,8 +9,8 @@ public class SceneManager {
     private static Stage stage;
     private static Scene scene;
 
-    private static final double WIDTH = 900;
-    private static final double HEIGHT = 600;
+    private static final double WIDTH = 1000;
+    private static final double HEIGHT = 700;
 
     public static void init(Stage primaryStage) throws Exception {
         stage = primaryStage;
@@ -20,9 +20,6 @@ public class SceneManager {
         );
 
         scene = new Scene(root, WIDTH, HEIGHT);
-        System.out.println(
-                SceneManager.class.getResource("/style/style.css")
-        );
         scene.getStylesheets().add(SceneManager.class.getResource("/style/style.css").toExternalForm());
 
         stage.setTitle("Sonory Extends");

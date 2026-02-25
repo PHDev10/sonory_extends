@@ -19,7 +19,7 @@
     <center>
         <VBox alignment="CENTER" spacing="25" styleClass="center-box">
 
-            <Label text="Digite seu nome:"
+            <Label text="Digite seu nome de usuário:"
                    styleClass="subtitle-label"/>
 
             <TextField fx:id="txtNome"
