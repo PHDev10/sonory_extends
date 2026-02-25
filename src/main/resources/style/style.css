@@ -1,6 +1,4 @@
-/* =========================
-   CONFIGURAÇÃO GLOBAL
-========================= */
+/* CONFIGURAÇÃO GLOBAL*/
 
 .root {
     -fx-font-family: "Segoe UI";
@@ -12,9 +10,7 @@
     -fx-background-color: transparent;
 }
 
-/* =========================
-   CABEÇALHO
-========================= */
+/* CABEÇALHO*/
 
 .header-box {
     -fx-padding: 35 0 20 0;
@@ -36,9 +32,7 @@
     -fx-alignment: center;
 }
 
-/* =========================
-   CONTAINER CENTRAL
-========================= */
+/* CONTAINER CENTRAL*/
 
 .center-box {
     -fx-padding: 20;
@@ -53,9 +47,7 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 25, 0.2, 0, 8);
 }
 
-/* =========================
-   ÁREA DE CONVERSÃO
-========================= */
+/* ÁREA DE CONVERSÃO*/
 
 .file-box {
     -fx-background-color: #f1f5f9;
@@ -73,9 +65,7 @@
     -fx-text-fill: #334155;
 }
 
-/* =========================
-   INPUTS
-========================= */
+/* INPUTS */
 
 .input-field {
     -fx-pref-width: 280px;
@@ -96,9 +86,7 @@
     -fx-border-width: 2;
 }
 
-/* =========================
-   BOTÕES - BASE PADRÃO
-========================= */
+/* BOTÕES - BASE PADRÃO */
 
 .button {
     -fx-font-size: 14px;
@@ -109,9 +97,7 @@
     -fx-transition: all 0.2s ease-in-out;
 }
 
-/* =========================
-   BOTÃO PRINCIPAL AZUL
-========================= */
+/* BOTÃO PRINCIPAL AZUL*/
 
 .primary-button {
     -fx-background-color: linear-gradient(to right, #2563eb, #1d4ed8);
@@ -124,9 +110,7 @@
     -fx-scale-y: 1.04;
 }
 
-/* =========================
-   BOTÃO DE AÇÃO (Selecionar Arquivo)
-========================= */
+/* BOTÃO DE AÇÃO (Selecionar Arquivo) */
 
 .action-button {
     -fx-background-color: #e0f2fe;
@@ -140,9 +124,7 @@
     -fx-background-color: #bae6fd;
 }
 
-/* =========================
-   STATUS - SUCESSO
-========================= */
+/* STATUS - SUCESSO */
 
 .status-success {
     -fx-background-color: #dcfce7;
@@ -152,9 +134,7 @@
     -fx-font-weight: bold;
 }
 
-/* =========================
-   STATUS - ERRO
-========================= */
+/* STATUS - ERRO */
 
 .status-error {
     -fx-background-color: #fee2e2;
@@ -164,9 +144,7 @@
     -fx-font-weight: bold;
 }
 
-/* =========================
-   BOTÃO DE CONVERSÃO (DESTAQUE)
-========================= */
+/* BOTÃO DE CONVERSÃO (DESTAQUE) */
 
 .convert-button {
     -fx-pref-width: 230px;
@@ -185,9 +163,7 @@
     -fx-scale-y: 1.06;
 }
 
-/* =========================
-   BOTÃO SECUNDÁRIO
-========================= */
+/* BOTÃO SECUNDÁRIO*/
 
 .secondary-button {
     -fx-background-color: #e5e7eb;
@@ -198,9 +174,7 @@
     -fx-background-color: #d1d5db;
 }
 
-/* =========================
-   BOTÃO PERIGO (LIMPAR / REMOVER)
-========================= */
+/* BOTÃO PERIGO (LIMPAR / REMOVER) */
 
 .danger-button {
     -fx-background-color: #fee2e2;
@@ -214,9 +188,7 @@
     -fx-background-color: #fecaca;
 }
 
-/* =========================
-   TABELAS (Histórico)
-========================= */
+/* TABELAS (Histórico) */
 
 .table-view {
     -fx-font-size: 13px;
@@ -237,9 +209,7 @@
     -fx-font-size: 13px;
 }
 
-/* =========================
-   CÉLULAS
-========================= */
+/* CÉLULAS*/
 
 .table-view .table-cell {
     -fx-font-size: 13px;
@@ -252,18 +222,14 @@
 }
 
 
-/* =========================
-   OUTROS COMPONENTES
-========================= */
+/* OUTROS COMPONENTES */
 
 .combo-box {
     -fx-background-radius: 8;
     -fx-border-radius: 8;
 }
 
-/* =========================
-   BARRA INFERIOR
-========================= */
+/* BARRA INFERIOR */
 
 .bottom-bar {
     -fx-padding: 20 40;
@@ -287,9 +253,7 @@
     -fx-border-color: #e5e7eb;
 }
 
-/* =========================
-   HISTÓRICO - CONTAINER
-========================= */
+/* HISTÓRICO - CONTAINER */
 
 .history-container {
     -fx-padding: 40;
@@ -303,9 +267,7 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 25, 0.2, 0, 8);
 }
 
-/* =========================
-   PLAYER CARD
-========================= */
+/* PLAYER CARD */
 
 .player-card {
     -fx-background-color: white;

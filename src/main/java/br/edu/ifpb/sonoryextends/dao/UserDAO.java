@@ -2,7 +2,6 @@ package br.edu.ifpb.sonoryextends.dao;
 
 import br.edu.ifpb.sonoryextends.model.User;
 import br.edu.ifpb.sonoryextends.util.Connection;
-
 import java.sql.*;
 
 public class UserDAO {

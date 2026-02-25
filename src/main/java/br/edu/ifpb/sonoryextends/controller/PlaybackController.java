@@ -11,9 +11,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Slider;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.stage.Stage;
-import javafx.util.Duration;
-
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;

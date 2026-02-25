@@ -2,7 +2,6 @@ package br.edu.ifpb.sonoryextends.dao;
 
 import br.edu.ifpb.sonoryextends.model.AudioFile;
 import br.edu.ifpb.sonoryextends.util.Connection;
-
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
 

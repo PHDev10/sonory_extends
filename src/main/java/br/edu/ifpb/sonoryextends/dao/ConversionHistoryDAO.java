@@ -2,7 +2,6 @@ package br.edu.ifpb.sonoryextends.dao;
 
 import br.edu.ifpb.sonoryextends.model.ConversionHistory;
 import br.edu.ifpb.sonoryextends.util.Connection;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

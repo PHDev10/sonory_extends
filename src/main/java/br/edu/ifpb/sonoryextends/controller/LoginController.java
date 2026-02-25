@@ -1,19 +1,14 @@
 package br.edu.ifpb.sonoryextends.controller;
 
 import br.edu.ifpb.sonoryextends.dao.UserDAO;
-import br.edu.ifpb.sonoryextends.model.ConversionHistory;
 import br.edu.ifpb.sonoryextends.model.User;
 import br.edu.ifpb.sonoryextends.util.SceneManager;
 import br.edu.ifpb.sonoryextends.util.Session;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ButtonType;
-import javafx.stage.Stage;
-
 import java.util.Optional;
 
 public class LoginController {
