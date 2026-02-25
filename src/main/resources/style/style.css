@@ -303,3 +303,64 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 25, 0.2, 0, 8);
 }
 
+/* =========================
+   PLAYER CARD
+========================= */
+
+.player-card {
+    -fx-background-color: white;
+    -fx-background-radius: 22;
+    -fx-padding: 40;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 30, 0.2, 0, 10);
+}
+
+.audio-list {
+    -fx-background-radius: 14;
+    -fx-border-radius: 14;
+    -fx-border-color: #e2e8f0;
+}
+
+.audio-list .list-cell {
+    -fx-padding: 12;
+    -fx-font-size: 14px;
+}
+
+.audio-list .list-cell:selected {
+    -fx-background-color: #e0f2fe;
+}
+
+.play-button {
+    -fx-background-color: linear-gradient(to right, #16a34a, #15803d);
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
+    -fx-background-radius: 18;
+}
+
+.play-button:hover {
+    -fx-background-color: linear-gradient(to right, #15803d, #166534);
+    -fx-scale-x: 1.08;
+    -fx-scale-y: 1.08;
+}
+
+.pause-button {
+    -fx-background-color: linear-gradient(to right, #2563eb, #1d4ed8);
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
+    -fx-background-radius: 18;
+}
+
+.pause-button:hover {
+    -fx-background-color: linear-gradient(to right, #1e40af, #1e3a8a);
+    -fx-scale-x: 1.08;
+    -fx-scale-y: 1.08;
+}
+
+.volume-slider .track {
+    -fx-background-color: #e2e8f0;
+    -fx-background-radius: 10;
+}
+
+.volume-slider .thumb {
+    -fx-background-color: #2563eb;
+    -fx-background-radius: 50%;
+}

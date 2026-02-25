@@ -2,54 +2,74 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="br.edu.ifpb.sonoryextends.controller.PlaybackController"
-            prefWidth="750"
-            prefHeight="450">
+            prefWidth="1000"
+            prefHeight="700"
+            styleClass="root-pane">
 
     <top>
-        <VBox alignment="CENTER" spacing="10" style="-fx-padding: 15;">
+        <VBox alignment="CENTER" spacing="12" styleClass="header-box">
             <Label text="Sonory Extends - Reprodutor"
                    styleClass="title-label"/>
 
-            <Button text="← Voltar"
-                    prefWidth="200"
-                    onAction="#voltarParaConversao"/>
+            <HBox spacing="15" alignment="CENTER">
+                <Button text="← Voltar"
+                        styleClass="secondary-button"
+                        onAction="#voltarParaConversao"/>
 
-            <Button text="Abrir Pasta do Backup"
-                    prefWidth="200"
-                    onAction="#abrirPastaBackup"/>
+                <Button text="Abrir Pasta do Backup"
+                        styleClass="action-button"
+                        onAction="#abrirPastaBackup"/>
+            </HBox>
         </VBox>
     </top>
 
     <center>
-        <VBox spacing="20" alignment="CENTER">
+        <StackPane styleClass="center-box">
+            <VBox spacing="25"
+                  alignment="CENTER"
+                  styleClass="player-card">
 
-            <Label text="Arquivos Convertidos:"/>
+                <Label text="Arquivos Convertidos"
+                       styleClass="subtitle-label"/>
 
-            <ListView fx:id="listaDeVisualizacaoArquivos"
-                      prefWidth="500"
-                      prefHeight="250"/>
+                <ListView fx:id="listaDeVisualizacaoArquivos"
+                          prefWidth="550"
+                          prefHeight="250"
+                          styleClass="audio-list"/>
 
-            <HBox spacing="15" alignment="CENTER">
-                <Button text="▶ Reproduzir"
-                        onAction="#handlePlay"/>
+                <HBox spacing="25" alignment="CENTER">
 
-                <Button text="⏸ Pausar"
-                        onAction="#handlePause"/>
-            </HBox>
+                    <Button text="▶"
+                            prefWidth="80"
+                            prefHeight="60"
+                            styleClass="play-button"
+                            onAction="#handlePlay"/>
 
-            <Label text="Volume"/>
+                    <Button text="⏸"
+                            prefWidth="80"
+                            prefHeight="60"
+                            styleClass="pause-button"
+                            onAction="#handlePause"/>
 
-            <Slider fx:id="volumeSlider"
-                    prefWidth="400"
-                    min="0"
-                    max="100"
-                    value="50"/>
+                </HBox>
 
-        </VBox>
+                <VBox spacing="8" alignment="CENTER">
+                    <Label text="Volume"
+                           style="-fx-font-weight: 600;"/>
+
+                    <Slider fx:id="volumeSlider"
+                            prefWidth="400"
+                            min="0"
+                            max="100"
+                            value="50"
+                            styleClass="volume-slider"/>
+                </VBox>
+
+            </VBox>
+        </StackPane>
     </center>
 
 </BorderPane>
