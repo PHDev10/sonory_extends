@@ -45,7 +45,7 @@ public class ConvertController {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Selecionar Arquivos de Áudio");
 
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Áudios", "*.mp3", "*.wav"));
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Áudios", "*.mp3", "*.wav", "*.wma", "*.m4a", "*.amr", "*.ogg"));
         selectedFiles = fileChooser.showOpenMultipleDialog(null);
         if (selectedFiles != null && !selectedFiles.isEmpty()) {
             fileLabel.setText(selectedFiles.size() + " arquivo(s) selecionado(s)");
