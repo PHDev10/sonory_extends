@@ -43,14 +43,12 @@ public class LoginController {
                 return;
             }
         }
-        Session.setUsuarioAtual(usuarioLogado);
 
+        Session.setUsuarioAtual(usuarioLogado);
         entrarNoSistema();
     }
 
     public void entrarNoSistema() {
-        Session.setUsuarioAtual(usuarioLogado);
-
         ConvertController controller = (ConvertController) SceneManager.switchScene("/view/convert-view.fxml");
     }
 
@@ -60,9 +58,5 @@ public class LoginController {
         alert.setHeaderText(null);
         alert.setContentText(mensagem);
         alert.showAndWait();
-    }
-
-    public User getUsuarioLogado() {
-        return usuarioLogado;
     }
 }

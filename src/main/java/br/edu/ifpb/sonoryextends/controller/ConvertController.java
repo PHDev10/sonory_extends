@@ -28,7 +28,6 @@ public class ConvertController {
     @FXML
     private Label folderLabel;
 
-    private File selectedFile;
     private File selectedFolder;
     private List<File> selectedFiles;
 
@@ -124,7 +123,6 @@ public class ConvertController {
         progressBar.progressProperty().bind(mainTask.progressProperty());
 
         mainTask.setOnSucceeded(event -> {
-
             progressBar.progressProperty().unbind();
             progressBar.setProgress(0);
             progressBar.setVisible(false);

@@ -6,6 +6,7 @@ import br.edu.ifpb.sonoryextends.model.User;
 import br.edu.ifpb.sonoryextends.util.SceneManager;
 import br.edu.ifpb.sonoryextends.util.Session;
 import br.edu.ifpb.sonoryextends.util.Connection;
+import br.edu.ifpb.sonoryextends.dao.ConversionHistoryDAO;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -98,25 +99,15 @@ public class HistoryController {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             table.getItems().clear();
-            limparArquivoHistorico();
+
+            ConversionHistoryDAO acessoAoHistorico = new ConversionHistoryDAO();
+            acessoAoHistorico.deleteById(Session.getUsuarioAtual().getId());
         }
     }
 
     @FXML
     private void handleVoltar() {
         SceneManager.switchScene("/view/convert-view.fxml");
-    }
-
-    private void limparArquivoHistorico() {
-        String sql = "TRUNCATE TABLE conversion_history";
-
-        try (java.sql.Connection conn = Connection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     private void showAlert(String message) {

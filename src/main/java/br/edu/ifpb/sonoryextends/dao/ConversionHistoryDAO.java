@@ -89,7 +89,7 @@ public class ConversionHistoryDAO {
         return list;
     }
 
-    public void deleteById(Long id) {
+    public void deleteById(int id) {
         String sql = "DELETE FROM conversion_history WHERE id = ?";
 
         try (java.sql.Connection connection = Connection.getConnection();
