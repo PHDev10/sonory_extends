@@ -21,7 +21,6 @@ public class ConversionHistory {
         this.pacoteDeSaida = pacoteDeSaida;
         this.dataConversao = dataConversao;
         this.status = status;
-
     }
 
     public Long getId() {

@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.sql.PreparedStatement;
 
 public class AudioFileDAO {
-
     public void inserir(AudioFile audioFile) {
         String sql = "INSERT INTO audio_file (nome, caminho_original, formato, tamanho) VALUES (?, ?, ?, ?)";
 

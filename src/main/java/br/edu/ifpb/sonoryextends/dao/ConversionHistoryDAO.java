@@ -9,7 +9,7 @@ import java.util.List;
 public class ConversionHistoryDAO {
     public void save(ConversionHistory conversionHistory) {
         String sql = "INSERT INTO conversion_history (nome_original, formato_original, formato_conversao, pacote_saida, data_conversao, user_id, status) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        
+
         try (java.sql.Connection connection = Connection.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             
